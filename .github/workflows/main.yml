@@ -1,0 +1,30 @@
+name: End-to-end tests
+on: [push, pull_request] # Executa ao enviar código ou abrir PR
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4 # Baixa seu código
+
+    - uses: actions/setup-node@v4 # Instala o Node.js
+      with:
+        node-version: 18
+
+    - name: Install dependencies
+      run: npm install # Instala as bibliotecas (incluindo CodeceptJS)
+
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps # Instala os navegadores do Playwright
+
+    - name: Run CodeceptJS tests
+      run: npx codeceptjs run --steps # Executa os testes
+
+    - name: Upload Report
+      if: always() # Garante que o relatório suba mesmo se o teste falhar
+      uses: actions/upload-artifact@v4
+      with:
+        name: playwright-report
+        path: output/
+        retention-days: 30

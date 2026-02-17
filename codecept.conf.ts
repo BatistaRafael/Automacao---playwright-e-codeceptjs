@@ -6,13 +6,13 @@ export const config: CodeceptJS.MainConfig = {
     Playwright: {
       browser: 'chromium',
       url: 'https://www.saucedemo.com',
-      show: true
+      show: false
     }
   },
 
   include: {
     I: './steps_file',
-    loginPage: './pages/login_page.ts',
+    loginPage: './pages/loginpage.ts',
     inventoryPage: './pages/inventory.page.ts'
   },
 
