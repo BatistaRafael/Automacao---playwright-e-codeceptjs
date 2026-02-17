@@ -12,7 +12,7 @@ export const config: CodeceptJS.MainConfig = {
 
   include: {
     I: './steps_file',
-    loginPage: './pages/loginpage.ts',
+    loginPage: './pages/login_page.ts',
     inventoryPage: './pages/inventory.page.ts'
   },
 
